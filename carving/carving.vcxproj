@@ -69,20 +69,43 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>D:\Develop\opencv\build\include;D:\Develop\opencv\build\include\opencv2;D:\Develop\opencv\build\include\opencv;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\Develop\opencv\build\x86\mingw\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>D:\Develop\opencv\build\include;D:\Develop\opencv\build\include\opencv2;D:\Develop\opencv\build\include\opencv;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\Develop\opencv\build\x86\mingw\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>D:\Develop\opencv\build\include\opencv2;D:\Develop\opencv\build\include\opencv;D:\Develop\opencv\build\include;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\Develop\opencv\build\x64\vc14\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>D:\Develop\opencv\build\include\opencv2;D:\Develop\opencv\build\include\opencv;D:\Develop\opencv\build\include;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\Develop\opencv\build\x64\vc14\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
+    <Link>
+      <AdditionalDependencies>libopencv_calib3d320.dll.a;libopencv_calib3d_pch_dephelp.a;libopencv_core320.dll.a;libopencv_core_pch_dephelp.a;libopencv_features2d320.dll.a;libopencv_features2d_pch_dephelp.a;libopencv_flann320.dll.a;libopencv_flann_pch_dephelp.a;libopencv_highgui320.dll.a;libopencv_highgui_pch_dephelp.a;libopencv_imgcodecs320.dll.a;libopencv_imgcodecs_pch_dephelp.a;libopencv_imgproc320.dll.a;libopencv_imgproc_pch_dephelp.a;libopencv_ml320.dll.a;libopencv_ml_pch_dephelp.a;libopencv_objdetect320.dll.a;libopencv_objdetect_pch_dephelp.a;libopencv_perf_calib3d_pch_dephelp.a;libopencv_perf_core_pch_dephelp.a;libopencv_perf_features2d_pch_dephelp.a;libopencv_perf_imgcodecs_pch_dephelp.a;libopencv_perf_imgproc_pch_dephelp.a;libopencv_perf_objdetect_pch_dephelp.a;libopencv_perf_photo_pch_dephelp.a;libopencv_perf_stitching_pch_dephelp.a;libopencv_perf_superres_pch_dephelp.a;libopencv_perf_videoio_pch_dephelp.a;libopencv_perf_video_pch_dephelp.a;libopencv_photo320.dll.a;libopencv_photo_pch_dephelp.a;libopencv_shape320.dll.a;libopencv_shape_pch_dephelp.a;libopencv_stitching320.dll.a;libopencv_stitching_pch_dephelp.a;libopencv_superres320.dll.a;libopencv_superres_pch_dephelp.a;libopencv_test_calib3d_pch_dephelp.a;libopencv_test_core_pch_dephelp.a;libopencv_test_features2d_pch_dephelp.a;libopencv_test_flann_pch_dephelp.a;libopencv_test_highgui_pch_dephelp.a;libopencv_test_imgcodecs_pch_dephelp.a;libopencv_test_imgproc_pch_dephelp.a;libopencv_test_ml_pch_dephelp.a;libopencv_test_objdetect_pch_dephelp.a;libopencv_test_photo_pch_dephelp.a;libopencv_test_shape_pch_dephelp.a;libopencv_test_stitching_pch_dephelp.a;libopencv_test_superres_pch_dephelp.a;libopencv_test_videoio_pch_dephelp.a;libopencv_test_video_pch_dephelp.a;libopencv_ts320.a;libopencv_ts_pch_dephelp.a;libopencv_video320.dll.a;libopencv_videoio320.dll.a;libopencv_videoio_pch_dephelp.a;libopencv_videostab320.dll.a;libopencv_videostab_pch_dephelp.a;libopencv_video_pch_dephelp.a;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
+    <Link>
+      <AdditionalDependencies>opencv_world320.lib;opencv_world320d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -91,10 +114,12 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>libopencv_calib3d320.dll.a;libopencv_calib3d_pch_dephelp.a;libopencv_core320.dll.a;libopencv_core_pch_dephelp.a;libopencv_features2d320.dll.a;libopencv_features2d_pch_dephelp.a;libopencv_flann320.dll.a;libopencv_flann_pch_dephelp.a;libopencv_highgui320.dll.a;libopencv_highgui_pch_dephelp.a;libopencv_imgcodecs320.dll.a;libopencv_imgcodecs_pch_dephelp.a;libopencv_imgproc320.dll.a;libopencv_imgproc_pch_dephelp.a;libopencv_ml320.dll.a;libopencv_ml_pch_dephelp.a;libopencv_objdetect320.dll.a;libopencv_objdetect_pch_dephelp.a;libopencv_perf_calib3d_pch_dephelp.a;libopencv_perf_core_pch_dephelp.a;libopencv_perf_features2d_pch_dephelp.a;libopencv_perf_imgcodecs_pch_dephelp.a;libopencv_perf_imgproc_pch_dephelp.a;libopencv_perf_objdetect_pch_dephelp.a;libopencv_perf_photo_pch_dephelp.a;libopencv_perf_stitching_pch_dephelp.a;libopencv_perf_superres_pch_dephelp.a;libopencv_perf_videoio_pch_dephelp.a;libopencv_perf_video_pch_dephelp.a;libopencv_photo320.dll.a;libopencv_photo_pch_dephelp.a;libopencv_shape320.dll.a;libopencv_shape_pch_dephelp.a;libopencv_stitching320.dll.a;libopencv_stitching_pch_dephelp.a;libopencv_superres320.dll.a;libopencv_superres_pch_dephelp.a;libopencv_test_calib3d_pch_dephelp.a;libopencv_test_core_pch_dephelp.a;libopencv_test_features2d_pch_dephelp.a;libopencv_test_flann_pch_dephelp.a;libopencv_test_highgui_pch_dephelp.a;libopencv_test_imgcodecs_pch_dephelp.a;libopencv_test_imgproc_pch_dephelp.a;libopencv_test_ml_pch_dephelp.a;libopencv_test_objdetect_pch_dephelp.a;libopencv_test_photo_pch_dephelp.a;libopencv_test_shape_pch_dephelp.a;libopencv_test_stitching_pch_dephelp.a;libopencv_test_superres_pch_dephelp.a;libopencv_test_videoio_pch_dephelp.a;libopencv_test_video_pch_dephelp.a;libopencv_ts320.a;libopencv_ts_pch_dephelp.a;libopencv_video320.dll.a;libopencv_videoio320.dll.a;libopencv_videoio_pch_dephelp.a;libopencv_videostab320.dll.a;libopencv_videostab_pch_dephelp.a;libopencv_video_pch_dephelp.a;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -104,13 +129,35 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>opencv_world320.lib;opencv_world320d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="enlargeCol.cpp" />
+    <ClCompile Include="func.cpp" />
+    <ClCompile Include="LapEng.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Oper.cpp" />
+    <ClCompile Include="Remove.cpp" />
+    <ClCompile Include="RobEng.cpp" />
+    <ClCompile Include="shrinkCol.cpp" />
+    <ClCompile Include="SobelEng.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Energy.h" />
+    <ClInclude Include="enlargeCol.h" />
+    <ClInclude Include="func.h" />
+    <ClInclude Include="LapEng.h" />
+    <ClInclude Include="Oper.h" />
+    <ClInclude Include="Remove.h" />
+    <ClInclude Include="RobEng.h" />
+    <ClInclude Include="shrinkCol.h" />
+    <ClInclude Include="SobelEng.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

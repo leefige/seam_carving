@@ -14,4 +14,62 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="func.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="LapEng.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="SobelEng.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="enlargeCol.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Oper.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="RobEng.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="shrinkCol.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Remove.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="func.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Energy.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="LapEng.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SobelEng.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="enlargeCol.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Oper.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="RobEng.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="shrinkCol.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Remove.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
 </Project>
