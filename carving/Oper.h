@@ -18,7 +18,7 @@ public:
     virtual void calcDif(const Mat & src, Mat & grad, Energy* en);
     virtual void show(Mat& tmp, vector<pair<int, int> > path) = 0;
     virtual void getTrace(Mat & grad, Mat& ener, Mat & trace) = 0;
-    virtual vector<pair<int, int> > getPath(Mat & tracer) = 0;
+    virtual vector<pair<int, int> > getPath(const Mat& ener, Mat & tracer) = 0;
     virtual void oneLine(const Mat & src, Mat & dst, vector<pair<int, int> > path) = 0;
 };
 

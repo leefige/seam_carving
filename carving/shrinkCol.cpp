@@ -67,22 +67,21 @@ void shrinkCol::getTrace(Mat & grad, Mat& ener, Mat & trace)
 	}//gradd for
 }
 
-vector<pair<int, int> > shrinkCol::getPath(Mat & tracer)
+vector<pair<int, int> > shrinkCol::getPath(const Mat& ener, Mat & tracer)
 {
     //printf("getPath called\n");
 	vector<pair<int, int> > buf;
 
-    int crow = tracer.rows - 1;	//current row is last row
-	int pos = tracer.cols - 1;	//start point
+    int crow = ener.rows - 1;	//current row is last row
+	int pos = ener.cols - 1;	//start point
 	float min = RAND_MAX;
-	int c = rand() % 2;
-	for (int i = 0; i < tracer.cols - 1 ; i++)
+	//int c = rand() % 2;
+	for (int i = 0; i < ener.cols - 1 ; i++)
 	{
-		if (((c == 0) && (tracer.at<float>(crow, i) <= min)) ||
-            ((c == 1) && (tracer.at<float>(crow, i) < min)))
+		if (ener.at<float>(crow, i) < min)
 		{
 			pos = i;
-			min = tracer.at<float>(crow, i);
+			min = ener.at<float>(crow, i);
 		}
 	}
 	buf.push_back(pair<int, int>(crow, pos));
@@ -137,5 +136,5 @@ void shrinkCol::show(Mat& tmp, vector<pair<int, int> > path)
         tmp.at<Vec3b>(fst, scd)[2] = 255;   //red
     }
     imshow("Seam", tmp);
-    cvWaitKey(32);
+    cvWaitKey(10);
 }

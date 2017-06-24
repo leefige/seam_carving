@@ -5,13 +5,13 @@
 Remove::Remove(const Mat& src, vector<pair<int, int> >& mask)
 {
 	data = new mouseData(src, mask);
+	backup = Mat(data->rows, data->cols, CV_8U, Scalar(0));
 }
 
 
 Remove::~Remove()
 {
-	vector<pair<int, int> > tp;
-	data->obj.swap(tp);
+	backup.release();
 	if (data)
 		delete data;
 }
@@ -27,6 +27,11 @@ void Remove::removeObj()
 		{
 			break;
 		}
+	}
+	setMouseCallback("Draw mask", NULL, NULL);
+	for (auto point : data->obj)
+	{
+		backup.at<uchar>(point.first, point.second) = 1;
 	}
 }
 

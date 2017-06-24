@@ -12,7 +12,7 @@ public:
 
     void show(Mat& tmp, vector<pair<int, int> > path);
     void getTrace(Mat & grad, Mat& ener, Mat & trace);
-    vector<pair<int, int> > getPath(Mat & tracer);
+    vector<pair<int, int> > getPath(const Mat& ener, Mat & tracer);
     void oneLine(const Mat & src, Mat & dst, vector<pair<int, int> > path);
 };
 

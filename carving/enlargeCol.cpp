@@ -74,23 +74,49 @@ void enlargeCol::getTrace(Mat & grad, Mat& ener, Mat & trace)
 	}//gradd for
 }
 
-vector<pair<int, int> > enlargeCol::getPath(Mat & tracer)
+vector<pair<int, int> > enlargeCol::getPath(const Mat& ener, Mat & tracer)
 {
 	vector<pair<int, int> > buf;
+	vector<int> choices;
 
-    int crow = tracer.rows - 1;	//current row is last row
-	int pos = tracer.cols - 1;				//start point
+    int crow = ener.rows - 1;	//current row is last row
+	int pos = ener.cols - 1;				//start point
+	float max = 0;
 	float min = RAND_MAX;
-	int c = rand() % 2;
-	for (int i = 0; i < tracer.cols - 1; i++)
+	//int c = rand() % 2;
+	for (int i = 0; i < ener.cols - 1; i++)
 	{
-		if (((c == 0) && (tracer.at<float>(crow, i) <= min)) ||
-            ((c == 1) && (tracer.at<float>(crow, i) < min)))
+		if (ener.at<float>(crow, i) < min)
 		{
 			pos = i;
-			min = tracer.at<float>(crow, i);
+			min = ener.at<float>(crow, i);
+		}
+		else if (ener.at<float>(crow, i) > max)
+		{
+			max = ener.at<float>(crow, i);
 		}
 	}
+
+	double u_bound = (min + max) * 0.5;
+	double l_bound = 1.2 * min;
+	choices.push_back(pos);
+	//printf("min, bounds, max = %f %f %f %f\n", min, l_bound, u_bound, max);
+
+	for (int i = 0; i < ener.cols - 1; i++)
+	{
+		if (ener.at<float>(crow, i) < u_bound && ener.at<float>(crow, i) > l_bound)
+		{
+			//printf("i = %d\n", i);
+			choices.push_back(i);
+			
+		}
+	}
+
+	//srand(min);
+	int index = rand() % choices.size();
+	pos = choices[index];
+	printf("pos = %d\n", pos);
+
 	buf.push_back(pair<int, int>(crow, pos));
 	crow--;
 
@@ -109,9 +135,7 @@ void enlargeCol::oneLine(const Mat & src, Mat & dst, vector<pair<int, int> > pat
 {
 	/*-------------cut one col------------------*/
 	int rows = src.rows;
-	Mat kernel = (Mat_<float>(3,3) << 1.5,  2,  1,
-                                      3,    4,  2,
-                                      1.5,  2,  1);
+
     for (int i = 0; i < rows; i++)	//each row
 	{
 		int fst = path[i].first;
@@ -172,6 +196,6 @@ void enlargeCol::show(Mat& tmp, vector<pair<int, int> > path)
         tp.at<Vec3b>(fst, scd)[2] = 0;     //red
     }
     imshow("Seam", tp);
-    cvWaitKey(100);
+    cvWaitKey(10);
 }
 

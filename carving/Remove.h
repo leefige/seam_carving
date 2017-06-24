@@ -29,6 +29,7 @@ class Remove
 {
 public:
 	mouseData* data;
+	Mat backup;
 	
 	Remove(const Mat& src, vector<pair<int, int> >& mask);
 	virtual ~Remove();

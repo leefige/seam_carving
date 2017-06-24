@@ -51,13 +51,13 @@ int main(int argc, char** argv)
 		type = "remove";
 		rm = new Remove(img, mask);
 		rm->removeObj();
-		s_x = img.rows - (rm->data->xmax - rm->data->xmin);
+
 		s_y = img.cols - (rm->data->ymax - rm->data->ymin);
 		//------------------------------------------------
 
 		op_col = new shrinkCol;		//use shrinkCol to remove object
-		Mat mid(resizeImg(img, s_y, gr, op_col));
-		mid.copyTo(buf);
+		Mat mid(removeObj(img, gr, op_col, rm));
+		mid.copyTo(output);
 	}
 
 	//---------or: resize-----------
